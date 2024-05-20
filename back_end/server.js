@@ -33,7 +33,7 @@ app.use("/insurance", InsuranceRouter);
 
 app.use("/purchase", purchaseRouter);
 
-app.use("/claim", claimRouter);
+app.use("/claims", claimRouter);
 mongoose.Promise = global.Promise;
 
 app.use(express.static(path.join(__dirname, "/uploads")));

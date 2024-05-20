@@ -19,3 +19,24 @@ exports.create = async (req, res) => {
 
   res.send({ success: true, claim: newClaim });
 };
+
+exports.getClaims = async (req, res) => {
+  const claims = await claimModel.find();
+
+  res.send({ claims });
+};
+
+exports.updateClaim = async (req, res) => {
+  const status = req.body.status;
+  const claimId = req.body.claimId;
+  const claims = await claimModel.updateOne(
+    { _id: claimId },
+    {
+      $set: {
+        status: status,
+      },
+    }
+  );
+
+  res.send({ success: true });
+};

@@ -53,7 +53,7 @@ const CustomerScreen = () => {
       userId: userlocal._id,
       purchaseId: contract._id,
     };
-    const response = await Axios.post("/claim/create", body);
+    const response = await Axios.post("/claims/create", body);
     console.log("create ", response.data);
     if (response.data.success) {
       setopenCreateDialog(false);

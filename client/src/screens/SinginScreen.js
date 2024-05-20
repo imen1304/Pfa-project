@@ -71,6 +71,9 @@ const SignInScreen = () => {
       } else if (login.data.user.role == "insurance_agent") {
         navigate("/insurance", { replace: true });
         window.location.reload();
+      } else if (login.data.user.role == "repair_agent") {
+        navigate("/repairdash", { replace: true });
+        window.location.reload();
       }
     } else {
       // display error message

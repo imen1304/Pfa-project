@@ -15,6 +15,7 @@ import ShopScreen from "../screens/ShopScreen";
 import InsuranceScreen from "../screens/InsuranceScreen";
 import CustomerScreen from "../screens/CustomerScreen";
 import SingleProductScreen from "../screens/ProductSingleScreen";
+import RepairScreen from "../screens/RepairDash";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -31,6 +32,7 @@ function AppMain() {
         <Route path="/product/:id" element={<SingleProductScreen />} />
         <Route path="/insurance" element={<InsuranceScreen />} />
         <Route path="/customer" element={<CustomerScreen />} />
+        <Route path="/repairdash" element={<RepairScreen />} />
       </Routes>
     </Router>
   );

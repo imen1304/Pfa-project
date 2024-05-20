@@ -22,6 +22,8 @@ const AdminPages = ["admin"];
 const customerPages = ["Shop", "customer"];
 const shopAgent = ["shopdash"];
 
+const repairAgent = [""];
+
 const insurancePages = ["insurance"];
 
 const settings = ["Logout"];

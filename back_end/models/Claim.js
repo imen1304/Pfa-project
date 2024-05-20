@@ -16,6 +16,10 @@ const ClaimSchema = new mongoose.Schema(
     purchase_id: {
       type: String,
     },
+    status: {
+      type: String,
+      default: "pending",
+    },
   },
   {
     timestamps: {
