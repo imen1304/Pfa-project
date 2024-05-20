@@ -18,6 +18,8 @@ const InsuranceRouter = require("./routes/Insurances.js");
 
 const purchaseRouter = require("./routes/purchases.js");
 
+const claimRouter = require("./routes/Claims.js");
+
 var path = require("path");
 // node modules
 
@@ -30,6 +32,8 @@ app.use("/products", ProductRouter);
 app.use("/insurance", InsuranceRouter);
 
 app.use("/purchase", purchaseRouter);
+
+app.use("/claim", claimRouter);
 mongoose.Promise = global.Promise;
 
 app.use(express.static(path.join(__dirname, "/uploads")));

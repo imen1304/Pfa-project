@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 var pages = [];
 
 const AdminPages = ["admin"];
-const customerPages = ["Shop", "Insurrance"];
+const customerPages = ["Shop", "customer"];
 const shopAgent = ["shopdash"];
 
 const insurancePages = ["insurance"];

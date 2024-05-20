@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const PurchaseSchema = new mongoose.Schema(
   {
     product: {
-      type: String,
-      default: "product ID",
+      type: Object,
     },
     user: {
       type: Object,

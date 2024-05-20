@@ -16,6 +16,7 @@ import {
   Form,
   Input,
   InputNumber,
+  Modal,
   Select,
 } from "antd";
 
@@ -46,22 +47,17 @@ const formItemLayout = {
     },
   },
 };
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
+
 const SingleProductScreen = () => {
   const [step, setStep] = useState(0);
   const [contracts, setContracts] = useState([]);
   const [selectedContract, setSelectedContract] = useState({});
+  const [openUpdateDialog, OpenUpdateDialog] = useState(false);
+
+  const [openErrorDialog, setOpenErrorDialog] = useState(false);
+  const [checkoutResponse, setCheckoutResponse] = useState();
+
+  const [price, setPrice] = useState(0);
   const { state } = useLocation();
   const [form] = Form.useForm();
 
@@ -77,13 +73,36 @@ const SingleProductScreen = () => {
 
     console.log("days ", days);
     setNumberOfDays(days);
+
+    let pricTotal =
+      parseInt(selectedContract.price) * parseInt(days) + parseInt(state.price);
+    console.log("total price ", pricTotal);
+    setPrice(pricTotal);
   };
 
-  const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
+  const checkout = async () => {
+    var fromvalues = form.getFieldValue();
+
+    const body = {
+      insuranceId: selectedContract._id,
+      name: fromvalues.name,
+      email: fromvalues.email,
+      begin_date: new Date(fromvalues.datepicker[0]),
+      end_date: new Date(fromvalues.datepicker[1]),
+      price: price,
+      productId: state._id,
+    };
+
+    const response = await Axios.post("/purchase/create", body);
+    console.log("form values ", response.data);
+    if (response.data.success) {
+      setCheckoutResponse(response.data);
+      OpenUpdateDialog(true);
+    } else {
+      setOpenErrorDialog(true);
+    }
+  };
+
   const collapes = [
     {
       key: "1",
@@ -126,15 +145,7 @@ const SingleProductScreen = () => {
         <div>
           <Row>
             <Col span={12}>Total </Col>
-            <Col span={12}>
-              {" "}
-              Total{" "}
-              {selectedContract.price != null
-                ? parseInt(selectedContract.price) * numberOfDays +
-                  parseInt(state.price)
-                : 0}{" "}
-              DT
-            </Col>
+            <Col span={12}> Total {price} DT</Col>
           </Row>
         </div>
       ),
@@ -353,7 +364,9 @@ const SingleProductScreen = () => {
 
             {step == 2 && (
               <Row justify={"end"} style={{ padding: "1rem" }}>
-                <Button type="primary">Checkout</Button>
+                <Button type="primary" onClick={checkout}>
+                  Checkout
+                </Button>
               </Row>
             )}
 
@@ -378,6 +391,48 @@ const SingleProductScreen = () => {
           </Card>
         </Grid>
       </Grid>
+
+      <Modal
+        width={500}
+        title={`Boutique Smarphones `}
+        visible={openUpdateDialog}
+        onOk={() => {
+          OpenUpdateDialog(false);
+        }}
+        onCancel={() => {
+          OpenUpdateDialog(false);
+        }}
+        cancelText="Cancel"
+      >
+        <div>
+          {openUpdateDialog ? (
+            <div>
+              <div> Transaction complet </div>{" "}
+              <div> Your email : {checkoutResponse.email ?? ""}</div>
+              <div> Your Password : {checkoutResponse.password ?? ""}</div>
+            </div>
+          ) : (
+            <div> Error </div>
+          )}
+        </div>
+      </Modal>
+
+      <Modal
+        width={500}
+        title={`error `}
+        visible={openErrorDialog}
+        onOk={() => {
+          setOpenErrorDialog(false);
+        }}
+        onCancel={() => {
+          setOpenErrorDialog(false);
+        }}
+        cancelText="Cancel"
+      >
+        <div>
+          <div> Email already exists </div>
+        </div>
+      </Modal>
     </div>
   );
 };

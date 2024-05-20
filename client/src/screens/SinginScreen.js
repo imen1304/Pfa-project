@@ -66,7 +66,7 @@ const SignInScreen = () => {
         navigate("/shopdash");
         window.location.reload();
       } else if (login.data.user.role == "customer") {
-        navigate("/shop", { replace: true });
+        navigate("/customer", { replace: true });
         window.location.reload();
       } else if (login.data.user.role == "insurance_agent") {
         navigate("/insurance", { replace: true });

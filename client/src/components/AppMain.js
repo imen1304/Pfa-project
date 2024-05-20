@@ -13,6 +13,8 @@ import ShopDashboard from "../screens/ShopDashboard";
 import CustomNavbar from "./customNavbar";
 import ShopScreen from "../screens/ShopScreen";
 import InsuranceScreen from "../screens/InsuranceScreen";
+import CustomerScreen from "../screens/CustomerScreen";
+import SingleProductScreen from "../screens/ProductSingleScreen";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -26,7 +28,9 @@ function AppMain() {
         <Route path="/admin" element={<AdminDashbaord />} />
         <Route path="/shopdash" element={<ShopDashboard />} />
         <Route path="/shop" element={<ShopScreen />} />
+        <Route path="/product/:id" element={<SingleProductScreen />} />
         <Route path="/insurance" element={<InsuranceScreen />} />
+        <Route path="/customer" element={<CustomerScreen />} />
       </Routes>
     </Router>
   );
