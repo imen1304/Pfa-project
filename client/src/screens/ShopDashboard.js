@@ -174,7 +174,7 @@ const ShopDashboard = () => {
                 },
               ]}
             >
-              <Select placeholder="select your gender">
+              <Select placeholder="select the category">
                 <Option value="smartphone">Smart Phone</Option>
                 <Option value="pc">PC</Option>
                 <Option value="home_appliance">Home Appliance</Option>

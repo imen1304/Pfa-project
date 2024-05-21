@@ -64,14 +64,14 @@ const CustomNavbar = (props) => {
   };
 
   const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+    setAnchorElNav(event.currentTarget);//To open the navigation menu.
   };
   const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+    setAnchorElUser(event.currentTarget);//To open the user menu.
   };
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+    setAnchorElNav(null);//Closes the navigation menu.
   };
 
   const menuButton = (param) => {

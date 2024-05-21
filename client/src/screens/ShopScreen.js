@@ -32,7 +32,7 @@ const ShopScreen = () => {
         direction="row"
         justifyContent="center"
         alignItems="flex-start"
-        spacing={4}
+        spacing={2}
       >
         {products.map((element) => {
           return (
@@ -42,7 +42,7 @@ const ShopScreen = () => {
               }}
             >
               <Grid item>
-                <Card sx={{ width: 400 }}>
+                <Card sx={{ width: 300 }}>
                   <CardActionArea>
                     <CardMedia
                       component="img"

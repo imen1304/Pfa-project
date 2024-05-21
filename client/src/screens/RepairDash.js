@@ -94,18 +94,28 @@ const RepairScreen = () => {
                   </TableCell>
 
                   <TableCell>
-                    <Tooltip title="Purchase Details">
+                    <Tooltip title="Purchase Details" >
                       <Button
+                   sx={{
+              backgroundColor: '#1677ff',
+              color: 'white',
+             minWidth: '150px', // Adjust the width as needed
+             height: '40px',
+             '&:hover': {
+            backgroundColor: 'gray',
+          },
+        }}
                         // style={{ width: "100%" }}
                         type="primary"
                         shape="circle"
+                      
                         icon={<MessageOutlined />}
                         onClick={() => {
                           //   getPurchase();
                           OpenUpdateDialog(true);
                           setClaimToUpdate(element);
                         }}
-                      ></Button>
+                      > Purchase Details</Button>
                     </Tooltip>
                   </TableCell>
                 </TableRow>
